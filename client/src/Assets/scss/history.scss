@@ -1,0 +1,16 @@
+
+.historylist{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    .filter{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    }
+    ol{
+        list-style-type:none;
+        padding-left:0px;
+    }
+    
+}

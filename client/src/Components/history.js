@@ -6,16 +6,24 @@ import {
   } from 'react-router-dom'
 class History extends Component {
   constructor(props) {
-    console.log('in Dashboard!')
+   
     super(props);
     this.state = {
-       
+       location:[],
+       loading:false
     }
     
   }
   
-  componentDidMount() {
-    
+    componentDidMount(){
+     
+      // var info = await axios.get('/history')
+      axios.get('/history').then(info=>{
+   
+        this.setState({location:info.data.location, loading:true})
+      })
+     
+      
   }
  
   handleChange = e => {
@@ -28,22 +36,29 @@ class History extends Component {
         alert('query');
         e.preventDefault(); 
        
-        var result = await axios.post('')   
        
     }catch(e){
         alert('error: ' + e);
     }
   }
   render() {
-    console.log("in history render!!!")
-    return(
+
+    if(this.state.loading === false){
+     
+      return(
+      
+        <h1>Loading</h1>
+         )
+    }else{
+    
+      return(
         <div className='container'>
         <h1>History</h1>
-           <Historylist date="" top=""/>
+           <Historylist locations={this.state.location}/>
         </div>
-           
-    
     )
+    }
+    
   }
 }
 

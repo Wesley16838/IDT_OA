@@ -14,8 +14,6 @@ const getCollectionFn = collection => {
 };
 
 module.exports = {
-  pages: getCollectionFn("pages"),
-  users: getCollectionFn("users"),
-  history: getCollectionFn("history"),
-  statistics: getCollectionFn("statistics")
+  locations: getCollectionFn("locations"),
+  
 };

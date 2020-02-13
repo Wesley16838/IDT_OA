@@ -5,11 +5,12 @@ import {
   } from 'react-router-dom'
 class Dashboardpage extends Component {
   constructor(props) {
-    console.log('in Dashboard!')
+
     super(props);
     this.state = {
         ip:'',
-        location:''
+        latitude:'',
+        longitude:''
     }
     
   }
@@ -19,20 +20,36 @@ class Dashboardpage extends Component {
   }
  
   handleChange = e => {
-   
+     
+       
+      
     this.setState({ip: e.target.value});
   };
 
   handleSubmit = async e => {
     try {
-        alert('A name was submitted: ' + this.state.ip);
+
+        
         e.preventDefault(); 
         let { ip } = this.state;
-        var result = await axios.post('/location/'+ip)   
-        console.log('result,',result)
-        this.setState({location:result})
+       
+        if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip)) { 
+          
+            var info = await axios.get('https://api.ipgeolocation.io/ipgeo?apiKey=e53d709ac76741288e7508c734e53785&ip='+ip)
+           
+            var result = await axios.post('/location',{
+                ip: ip,
+                latitude: info.data.latitude,
+                longitude: info.data.longitude
+              })   
+            this.setState({latitude:result.data.location.latitude, longitude:result.data.location.longitude})
+
+        }else{
+            alert("You have entered an invalid IP address!")  
+        }
+  
     }catch(e){
-        alert('error: ' + e);
+        console.log('error: ' + e);
     }
   }
   render() {
@@ -49,7 +66,8 @@ class Dashboardpage extends Component {
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
             <div className="location">
-                <p></p>
+                <p>latitude: {this.state.latitude}</p> 
+                <p>longitude: {this.state.longitude}</p>
             </div>
         </div>
            

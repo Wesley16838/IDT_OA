@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter as  Route, Link } from "react-router-dom"
-
+import { BrowserRouter as   Route, Link } from "react-router-dom"
 
 class Header extends Component {
   constructor(props){
@@ -25,7 +24,7 @@ class Header extends Component {
         </button>
       
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item">  
               <Link  className="nav-link" to='/'>Home</Link> 
             </li>
@@ -35,8 +34,9 @@ class Header extends Component {
           </ul>
          
         </div>
-      </nav>
-    )
+      </nav> 
+     
+    ) 
   }
 }
 

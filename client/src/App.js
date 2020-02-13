@@ -3,6 +3,7 @@ import Landingpage from './Components/landingpage';
 import Historypage from './Components/history';
 import Header from './Components/header';
 import './App.css';
+import './Assets/css/styles.min.css'//css file
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import MetaTags from 'react-meta-tags';
 function App() {
