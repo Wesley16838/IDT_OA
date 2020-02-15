@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Googlemap from './googlemap'
 import {
     withRouter
   } from 'react-router-dom'
@@ -69,6 +70,7 @@ class Dashboardpage extends Component {
                 <p>latitude: {this.state.latitude}</p> 
                 <p>longitude: {this.state.longitude}</p>
             </div>
+            <Googlemap lat={this.state.latitude} lng={this.state.longitude}/>
         </div>
            
     

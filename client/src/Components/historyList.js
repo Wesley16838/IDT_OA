@@ -10,11 +10,14 @@ class Historylist extends Component {
    
     this.state = {
        locations:this.props.locations.reverse(),
-       top:this.props.locations.length,
-       err:null,
        newlocations:this.props.locations,
-       newtop:this.props.locations.length,
-       date:''
+
+       top:this.props.locations.length,
+       newtop:'',
+       
+       err:null,
+       date:'',
+       datelocations:0
     }
     
   }
@@ -30,52 +33,71 @@ class Historylist extends Component {
   }
   submit = e =>{
     e.preventDefault();
-    var locations = this.state.locations
-    var num = this.state.newtop;//3
-    var date = this.state.date;//2020-02-13
-    var new_locations = [];
-    console.log('in submit')
+    var locations = this.state.locations//original 
+    var newlocations = this.state.newlocations;//new location
+    var num = this.state.locations.length;//original 
+    var newnum = this.state.newtop;//Input num  
+    var date = this.state.date;//date user input
+    
+    var new_locations = [];//tmp
+    //Both Nothing
+    if(date == '' && newnum==''){
+      this.setState({newlocations:locations})
+    }
+    //if date is nothing
     if(date === ''){
-      console.log('date nothing')
-      
-      if(num > this.state.top){
+     
+      //if num > new location number
+      if(newnum > this.state.locations.length){
         alert('Number must smaller than the number of element in the list!')
       }else{
-        
-        for(var i = 0; i<num; i++){
+        //if input is nothing
+        if(newnum == ''){
+          newnum = this.state.locations.length
+        }
+        for(var i = 0; i<newnum; i++){
           new_locations.push(locations[i])
         } 
         this.setState({newlocations:new_locations})
-      }
-        
+      }   
     }else{
-      console.log('date has something')
-      if(num > this.state.top){
-        alert('Number must smaller than the number of element in the list!')
-      }else{
         var arr = date.split('-')//user input
-        console.log('arr user input,',arr)
         var arr_next = []
         var arr_before = []
-        for(var j=0;j<this.state.newtop;j++){
-          arr_before = locations[j].time.split('-')
-          console.log('arr_before,',arr_before)
-          arr[1] = arr[1].replace('0','')
-          if(arr[0] === arr_before[0] && arr[1] === arr_before[1] && arr[2] === arr_before[2]){
-            console.log('all equal')
-            arr_next.push(locations[j])
+  
+        if(this.state.newtop == ''){
+          for(var j=0;j<num;j++){
+            arr_before = locations[j].time.split('-')
+            arr[1] = arr[1].replace('0','')
+            if(arr[0] === arr_before[0] && arr[1] === arr_before[1] && arr[2] === arr_before[2]){
+              arr_next.push(locations[j])
+            }
           }
+          this.setState({newlocations:arr_next})
+        }else{
+          for(var j=0;j<num;j++){
+            arr_before = locations[j].time.split('-')
+            arr[1] = arr[1].replace('0','')
+            if(arr[0] === arr_before[0] && arr[1] === arr_before[1] && arr[2] === arr_before[2]){
+              arr_next.push(locations[j])
+            }
+          }
+          var datelength = arr_next.length
+          if(newnum > datelength){
+            alert('Number must smaller than the number of element in the list!');
+           
+          }else{
+            var n = (arr_next.length-newnum)-1
+            for(var k=n; k>=0;k--){
+              arr_next.pop(newlocations[j])
+            }
+            this.setState({newlocations:arr_next, datelocations:datelength})
+          }
+         
         }
-        this.setState({newlocations:arr_next})
-      }
     }
-    
   }
   render() {
-    console.log("in historylist render!!!")
-    console.log(this.state.newlocations)
-    // console.log('date from server,',this.state.locations[0].time)//Wed Feb 12 2020 14:10:16 GMT-0500 (Eastern Standard Time)
-    // console.log('date from client,',this.state.date)
    
     var section = null;
      
