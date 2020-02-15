@@ -34,14 +34,14 @@ class Historylist extends Component {
   submit = e =>{
     e.preventDefault();
     var locations = this.state.locations//original 
-    var newlocations = this.state.newlocations;//new location
+    // var newlocations = this.state.newlocations;//new location
     var num = this.state.locations.length;//original 
     var newnum = this.state.newtop;//Input num  
     var date = this.state.date;//date user input
     
     var new_locations = [];//tmp
     //Both Nothing
-    if(date == '' && newnum==''){
+    if(date === '' && newnum===''){
       this.setState({newlocations:locations})
     }
     //if date is nothing
@@ -52,7 +52,7 @@ class Historylist extends Component {
         alert('Number must smaller than the number of element in the list!')
       }else{
         //if input is nothing
-        if(newnum == ''){
+        if(newnum === ''){
           newnum = this.state.locations.length
         }
         for(var i = 0; i<newnum; i++){
@@ -65,7 +65,7 @@ class Historylist extends Component {
         var arr_next = []
         var arr_before = []
   
-        if(this.state.newtop == ''){
+        if(this.state.newtop === ''){
           for(var j=0;j<num;j++){
             arr_before = locations[j].time.split('-')
             arr[1] = arr[1].replace('0','')
@@ -75,11 +75,11 @@ class Historylist extends Component {
           }
           this.setState({newlocations:arr_next})
         }else{
-          for(var j=0;j<num;j++){
-            arr_before = locations[j].time.split('-')
+          for(var l=0;l<num;l++){
+            arr_before = locations[l].time.split('-')
             arr[1] = arr[1].replace('0','')
             if(arr[0] === arr_before[0] && arr[1] === arr_before[1] && arr[2] === arr_before[2]){
-              arr_next.push(locations[j])
+              arr_next.push(locations[l])
             }
           }
           var datelength = arr_next.length
@@ -89,7 +89,7 @@ class Historylist extends Component {
           }else{
             var n = (arr_next.length-newnum)-1
             for(var k=n; k>=0;k--){
-              arr_next.pop(newlocations[j])
+              arr_next.pop()
             }
             this.setState({newlocations:arr_next, datelocations:datelength})
           }

@@ -19,7 +19,7 @@ class Googlemap extends Component {
       console.log('render google map')
       console.log('this.state in google,',this.state)
       console.log('this.props in google,',this.props)
-      if(this.props.lat == '' && this.props.lng == ''){
+      if(this.props.lat === '' && this.props.lng === ''){
         return (
           
             <Map
