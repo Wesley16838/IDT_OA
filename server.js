@@ -15,10 +15,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/location', async (req , res) => {
-    console.log('test api')
-    
+
     try{
-        console.log('body,',req.body)
+     
         const Ip = req.body.ip;
         const latitude = req.body.latitude;
         const longitude = req.body.longitude;

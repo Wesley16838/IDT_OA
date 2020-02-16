@@ -38,7 +38,7 @@ class Dashboardpage extends Component {
         
         e.preventDefault(); 
         let { ip,mobile } = this.state;
-        console.log('state,',this.state)
+       
         if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip) && mobile.length === 10) { 
             
             var info = await axios.get('https://api.ipgeolocation.io/ipgeo?apiKey=e53d709ac76741288e7508c734e53785&ip='+ip)
@@ -60,7 +60,7 @@ class Dashboardpage extends Component {
     }
   }
   render() {
-    console.log("in landingpage render!!!")
+  
     return(
         <div className='container'>
         

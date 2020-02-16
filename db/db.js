@@ -16,10 +16,7 @@ async function getAllLocations(){
 }
 
 async function addlocation(ip,date,time,latitude,longitude) {
-    console.log('in add location')
-    console.log('ip,',ip)
-    
-    
+   
     let newlocation = {
         ip:ip,
         latitude:latitude,
