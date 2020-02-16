@@ -1,4 +1,4 @@
-# <a href="https://pricovfrontend.herokuapp.com/" target="_blank">PriCov</a>
+# <a href="https://idt-oa.herokuapp.com/" target="_blank">IDT_OA</a>
 
 > IDT-OA
 
